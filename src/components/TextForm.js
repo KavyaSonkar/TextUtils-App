@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 
 
 export default function TextForm(props) {
+
     const handleUpClick = ()=>{
         //console.log('Uppercase was clicked' + text);
         let newText=text.toUpperCase();
@@ -18,15 +19,12 @@ export default function TextForm(props) {
       setText(newText);
     }
 
-    // const handleAltClick = ()=>{
-    //   let newText=text.
-    //   setText(newText);
-    // }
     const speak = () => {
       let msg = new SpeechSynthesisUtterance();
       msg.text = text;
       window.speechSynthesis.speak(msg);
     }
+
     const speakstop = () => {
       let msg = new SpeechSynthesisUtterance(text);
       window.speechSynthesis.speak(msg);
@@ -51,14 +49,12 @@ export default function TextForm(props) {
       let newText = strArr.join("");
       setText(newText);
     };
-
+ 
     const reversed = () => {
       let splitWord = text.split("");
-  
       let reverseWord = splitWord.reverse("");
       let joinedWords = reverseWord.join("");
       let newText = joinedWords
-  
       setText(newText);
     };
 
@@ -68,14 +64,14 @@ export default function TextForm(props) {
         setText(event.target.value);
     }
 
-    const [text, setText] = useState('enter the text here');
+    const [text, setText] = useState('');
     //setText('new text');
   return (
     <>
-    <div className='container'>
+    <div className='container' style={{color:props.mode==='light'?'black':'white'}}>
         <h1>{props.heading}</h1> 
-        <div className="mb-3">
-        <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
+        <div className="mb-1">
+        <textarea className="form-control" value={text} onChange={handleOnChange} style={{backgroundColor:props.mode==='dark'?'gray':'white', color:props.mode==='light'?'gray':'white'}}  id="myBox" rows="8"></textarea>
         </div>
         <button className="btn btn-primary mx-1" onClick={handleUpClick}>Convert to UPPERCASE</button>
         <button className="btn btn-primary mx-1" onClick={handleLoClick}>Convert to lowercase</button>
@@ -87,12 +83,12 @@ export default function TextForm(props) {
         <button type="submit" onClick={reversed} className="btn btn-warning mx-2 my-2">reverse2</button>
     </div>
 
-    <div className='container my-3'>
+    <div className='container my-3' style={{color:props.mode==='light'?'black':'white'}}>
      <h3>your text summary</h3>  
      <p>{text.split(" ").length} words and {text.length} characters</p>
      <p>{0.08 * text.split(" ").length} minutes read</p>
      <h3>Preview</h3>
-     <p>{text}</p>
+     <p>{text.length>0?text:'Enter something in textbox above to preview it here'}</p>
     </div>
     </>
     
