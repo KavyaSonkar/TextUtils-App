@@ -7,22 +7,26 @@ export default function TextForm(props) {
         //console.log('Uppercase was clicked' + text);
         let newText=text.toUpperCase();
         setText(newText);
+        props.showAlert('Text has been capitalised','success');
     }
 
     const handleLoClick = ()=>{
       let newText=text.toLowerCase();
       setText(newText);
+      props.showAlert('Text has been lowercased','success');
     }
 
     const handleClearClick = ()=>{
       let newText="";
       setText(newText);
+      props.showAlert('text cleared','success');
     }
 
     const speak = () => {
       let msg = new SpeechSynthesisUtterance();
       msg.text = text;
       window.speechSynthesis.speak(msg);
+      props.showAlert('Speaking now','success');
     }
 
     const speakstop = () => {
@@ -31,11 +35,13 @@ export default function TextForm(props) {
       const toogle = document.getElementById('toggle')
       if (toogle.textContent == "Speak") {
           toogle.innerHTML = "Stop"
+          props.showAlert('Speaking now','success');
       }
       else {
           toogle.innerHTML = "Speak"
           if (toogle.innerHTML = "Speak"){
               window.speechSynthesis.cancel()
+              props.showAlert('stop','success');
           }
       }
   }
@@ -56,6 +62,7 @@ export default function TextForm(props) {
       let joinedWords = reverseWord.join("");
       let newText = joinedWords
       setText(newText);
+      props.showAlert('text reversed','success');
     };
 
 
