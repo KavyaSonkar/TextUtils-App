@@ -1,8 +1,11 @@
+import React, { useState } from 'react'; 
 import './App.css';
+import About from './components/About';
 import Alert from './components/Alert';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
-import { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 
 function App() {
 const [mode, setMode] = useState('light');//weather dark mode is enabled or not
@@ -41,13 +44,22 @@ const toggleMode = () =>{
 
   return (
     <>
-  {/* <Navbar tittle='Textkavya' AboutText="about us hai"/> */}
+    {/* <Navbar tittle='Textkavya' AboutText="about us hai"/> */}
+  <Router>
   <Navbar tittle='TextUtils' mode={mode} toggleMode={toggleMode}/>
   <Alert alert={alert}/>
+  <div className="container">
+          <Routes>
 
-  <div className='container my-3'>
-  <TextForm showAlert={showAlert} heading='Enter your text to analyze' mode={mode}/>
-  </div>
+            <Route exact path="/about" element={<About />}>
+            </Route>
+
+            <Route exact path="/" element={<TextForm heading="Enter text to analyze"  mode={mode} showAlert={showAlert} />}>
+            </Route>
+
+          </Routes>
+        </div>
+  </Router>
   </>
     );
 }
