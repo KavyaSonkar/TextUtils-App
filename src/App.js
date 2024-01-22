@@ -23,11 +23,19 @@ const toggleMode = () =>{
   setMode('dark')
   document.body.style.backgroundColor= 'gray';
   showAlert('Dark mode has been enabled','success');
+  document.title =  'TextUtils - Dark Mode';
+  // setInterval(() => {
+  //   document.title =  'TextUtils is amazing';
+  // }, 2000);
+  // setInterval(() => {
+  //   document.title =  'Download now!!!';
+  // }, 1500);
 }
   else{
     setMode('light')
     document.body.style.backgroundColor= 'white';
     showAlert('Light mode has been enabled','success');
+    document.title =  'TextUtils - Light Mode';
   }
 }
 
