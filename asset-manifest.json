@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/textutil-afterdarkmode/static/css/main.e6c13ad2.css",
+    "main.js": "/textutil-afterdarkmode/static/js/main.06e69849.js",
+    "static/js/787.d4aba7ab.chunk.js": "/textutil-afterdarkmode/static/js/787.d4aba7ab.chunk.js",
+    "index.html": "/textutil-afterdarkmode/index.html",
+    "main.e6c13ad2.css.map": "/textutil-afterdarkmode/static/css/main.e6c13ad2.css.map",
+    "main.06e69849.js.map": "/textutil-afterdarkmode/static/js/main.06e69849.js.map",
+    "787.d4aba7ab.chunk.js.map": "/textutil-afterdarkmode/static/js/787.d4aba7ab.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.06e69849.js"
+  ]
+}
