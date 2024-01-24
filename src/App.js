@@ -1,10 +1,10 @@
 import React, { useState } from 'react'; 
 import './App.css';
-import About from './components/About';
+//import About from './components/About';
 import Alert from './components/Alert';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+//import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 
 function App() {
@@ -45,21 +45,21 @@ const toggleMode = () =>{
   return (
     <>
     {/* <Navbar tittle='Textkavya' AboutText="about us hai"/> */}
-  <Router>
+  {/* <Router> */}
   <Navbar tittle='TextUtils' mode={mode} toggleMode={toggleMode}/>
   <Alert alert={alert}/>
   <div className="container">
-          <Routes>
-
+          {/* <Routes>
             <Route exact path="/about" element={<About />}>
             </Route>
 
             <Route exact path="/" element={<TextForm heading="Enter text to analyze"  mode={mode} showAlert={showAlert} />}>
             </Route>
 
-          </Routes>
+          </Routes> */}
+          <TextForm heading="Enter text to analyze"  mode={mode} showAlert={showAlert} />
         </div>
-  </Router>
+  {/* </Router> */}
   </>
     );
 }
