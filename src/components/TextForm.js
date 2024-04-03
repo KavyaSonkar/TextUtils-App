@@ -76,28 +76,28 @@ export default function TextForm(props) {
   return (
     <>
     <div className='container' style={{color:props.mode==='light'?'black':'white'}}>
-        <h1>{props.heading}</h1> 
+        <h1 className='mb-5'>{props.heading}</h1> 
         <div className="mb-1">
-        <textarea className="form-control" value={text} onChange={handleOnChange} style={{backgroundColor:props.mode==='dark'?'gray':'white', color:props.mode==='light'?'gray':'white'}}  id="myBox" rows="8"></textarea>
+        <textarea className="form-control" value={text} onChange={handleOnChange} style={{backgroundColor:props.mode==='dark'?'rgb(36 74 104)':'white', color:props.mode==='light'?'rgb(36 74 104)':'white'}}  id="myBox" rows="8"></textarea>
         </div>
-        <button className="btn btn-primary mx-1" onClick={handleUpClick}>Convert to UPPERCASE</button>
-        <button className="btn btn-primary mx-1" onClick={handleLoClick}>Convert to lowercase</button>
-        <button className="btn btn-primary mx-1" onClick={handleClearClick}>Clear text</button>
-        {/* <button className="btn btn-primary mx-1" onClick={handleAltClick}>Alternate text</button> */}
-        <button type="submit" onClick={speak} className="btn btn-warning mx-2 my-2">Speak</button>
-        <button type="submit" onClick={speakstop} className="btn btn-warning mx-2 my-2" id="toggle">Speak stop</button>
-        <button type="submit" onClick={handleReverse} className="btn btn-warning mx-2 my-2">Reverse</button>
-        <button type="submit" onClick={reversed} className="btn btn-warning mx-2 my-2">reverse2</button>
+        <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleUpClick}>Convert to UPPERCASE</button>
+        <button disabled={text.length===0}className="btn btn-primary mx-2 my-2" onClick={handleLoClick}>Convert to lowercase</button>
+        <button disabled={text.length===0}className="btn btn-primary mx-2 my-2" onClick={handleClearClick}>Clear text</button>
+        <button disabled={text.length===0}type="submit" onClick={speak} className="btn btn-warning mx-2 my-2">Speak</button>
+        <button disabled={text.length===0}type="submit" onClick={speakstop} className="btn btn-warning mx-2 my-2" id="toggle">Speak stop</button>
+        <button disabled={text.length===0}type="submit" onClick={handleReverse} className="btn btn-warning mx-2 my-2">Reverse</button>
+        <button disabled={text.length===0}type="submit" onClick={reversed} className="btn btn-warning mx-2 my-2">reverse2</button>
     </div>
 
     <div className='container my-3' style={{color:props.mode==='light'?'black':'white'}}>
-     <h3>your text summary</h3>  
-     <p>{text.split(' ').length} words and {text.length} characters</p>
-     <p>{0.08 * text.split(" ").length} minutes read</p>
+     <h3>Your summary text</h3>  
+     <p>{text.split(' ').filter((element) => {return element.length != 0}).length} words and {text.length} characters</p>
+     {/* <p>{text.split(' ').length} words and {text.length} characters</p> */}
+     <p>{0.08 * text.split(" ").filter((element) => {return element.length != 0}).length} minutes read</p>
      <h3>Preview</h3>
      <p>{text.length>0?text:'Enter something in textbox above to preview it here'}</p>
     </div>
     </>
     
-  )
+  ) 
 }

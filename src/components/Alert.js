@@ -9,8 +9,11 @@ export default function Alert(props) {
         
     }
   return (
-    props.alert && <div class={`alert alert-${props.alert.type}`} role="alert">
+    <div style={{height: '50px'}}>
+    {props.alert && <div class={`alert alert-${props.alert.type}`} role="alert">
   <strong>{capitalize(props.alert.type)}</strong> :{props.alert.msg}
+</div>} 
+{/* we have to put everything in curly braces cz direct js likha hai toh nai chlega uske bina crash hojaega */}
 </div>
 
   )
