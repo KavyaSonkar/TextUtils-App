@@ -46,26 +46,17 @@ function App() {
         tittle="TextUtils"
         mode={mode}
         toggleMode={toggleMode}
-        showAlert={showAlert} key={new Date()} 
+        showAlert={showAlert} key={new Date()}
       />
       <Alert alert={alert} />
       <div className="container">
 
         <TextForm heading="Try textUtils - Word counter, Character counter, Remove extra spaces" mode={mode} showAlert={showAlert} />
-        {/* <TextForm heading="Enter text to analyze"  mode={mode} showAlert={showAlert} /> */}
+
       </div>
 
     </>
   )
 }
-  export default App
+export default App
 
-  // import React from 'react'
-  
-  // function App() {
-  //   return (
-  //     <div>App</div>
-  //   )
-  // }
-  
-  // export default App
