@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 export default function TextForm(props) {
 
   const handleUpClick = () => {
-    //console.log('Uppercase was clicked' + text);
     let newText = text.toUpperCase();
     setText(newText);
     props.showAlert('Text has been capitalised', 'success');
@@ -19,6 +18,25 @@ export default function TextForm(props) {
     setText(newText);
     props.showAlert('text cleared', 'success');
   }
+
+  const handleCopy = () => {
+    console.log("I am copy");
+    var text = document.getElementById("myBox");
+    text.select();
+    text.setSelectionRange(0, 9999);
+    text.select();
+    navigator.clipboard.writeText(text.value);
+    document.getSelection().removeAllRanges();
+    props.showAlert("Copied to Clipboard!", "success");
+  }
+
+  // Credits: Coding Wala
+  const handleExtraSpaces = () => {
+    let newText = text.split(/[ ]+/);
+    setText(newText.join(" "));
+    props.showAlert("Extra spaces removed!", "success");
+  }
+
 
   // const speak = () => {
   //   let msg = new SpeechSynthesisUtterance();
@@ -65,12 +83,11 @@ export default function TextForm(props) {
 
 
   const handleOnChange = (event) => {
-    //console.log('on change');
     setText(event.target.value);
   }
-
   const [text, setText] = useState('');
-  //setText('new text');
+
+
   return (
     <>
       <div className='container' style={{ color: props.mode === 'light' ? 'black' : 'white' }}>
@@ -81,6 +98,8 @@ export default function TextForm(props) {
         <button disabled={text.length === 0} className="btn btn-primary mx-2 my-2" onClick={handleUpClick}>Convert to UPPERCASE</button>
         <button disabled={text.length === 0} className="btn btn-primary mx-2 my-2" onClick={handleLoClick}>Convert to lowercase</button>
         <button disabled={text.length === 0} className="btn btn-primary mx-2 my-2" onClick={handleClearClick}>Clear text</button>
+        <button disabled={text.length === 0} className="btn btn-primary mx-1" onClick={handleCopy}>Copy Text</button>
+        <button disabled={text.length === 0} className="btn btn-primary mx-1" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
         {/* <button disabled={text.length === 0} className="btn btn-primary mx-2 my-2" onClick={speak} >Speak</button> */}
         <button disabled={text.length === 0} className="btn btn-primary mx-2 my-2" onClick={speakstop} id="toggle">Speak/Stop</button>
         <button disabled={text.length === 0} className="btn btn-primary mx-2 my-2" onClick={handleReverse} >Reverse</button>
@@ -89,7 +108,7 @@ export default function TextForm(props) {
 
       <div className='container my-3' style={{ color: props.mode === 'light' ? 'black' : 'white' }}>
         <h3>Your summary text</h3>
-        <p>{text.split(' ').filter((element) => { return element.length != 0 }).length} words and {text.length} characters</p>
+        <p>{text.split(/\s+/).filter((element) => { return element.length != 0 }).length} words and {text.length} characters</p>
         {/* <p>{text.split(' ').length} words and {text.length} characters</p> */}
         <p>{0.08 * text.split(" ").filter((element) => { return element.length != 0 }).length} minutes read</p>
         <h3>Preview</h3>
